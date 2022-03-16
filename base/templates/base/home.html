@@ -28,6 +28,7 @@
         </aside>
 
         <div>
+            <h5> Det finns för närvarande {{ room_count }} rum att välja mellan.</h5>
             <a href="{% url 'create-room' %}">Skapa ett rum</a>
             <div>
                 {% for room in rooms %}
