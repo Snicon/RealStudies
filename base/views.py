@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic
 from .forms import RoomForm
 
@@ -10,9 +13,12 @@ from .forms import RoomForm
 
 
 def loginPage(request):
+    page = 'login'
+    if request.user.is_authenticated:
+        return redirect('home')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('username').lower()
         password = request.POST.get('password')
 
         try:
@@ -28,7 +34,30 @@ def loginPage(request):
         else:
             messages.error(request, 'Något gick snett! Säker på att du har skrivit in rätt användarnamn och/eller lösenord?')
 
-    context = {}
+    context = {'page': page}
+    return render(request, 'base/login_register.html', context)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+
+def registerPage(request):
+    page = 'register'
+    form = UserCreationForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Något gick snett vid skapandet av ditt konto. :(')
+    context = {'page': page, 'form': form}
     return render(request, 'base/login_register.html', context)
 
 
@@ -53,6 +82,7 @@ def room(request, pk):
     return render(request, 'base/room.html', context)
 
 
+@login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
     if request.method == 'POST':
@@ -65,9 +95,14 @@ def createRoom(request):
     return render(request, 'base/room_form.html', context)
 
 
+@login_required(login_url='login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
+
+    # TODO: Redirect to home page with a flash message instead. Super user support?
+    if request.user != room.host:
+        return HttpResponse('Ser ut som att du inte får göra "på detta viset". :/')
 
     if request.method == 'POST':
         form = RoomForm(request.POST, instance=room)
@@ -79,8 +114,14 @@ def updateRoom(request, pk):
     return render(request, 'base/room_form.html', context)
 
 
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
+
+    # TODO: Redirect to home page with a flash message instead. Super user support?
+    if request.user != room.host:
+        return HttpResponse('Ser ut som att du inte får göra "på detta viset". :/')
+
     if request.method == 'POST':
         room.delete()
         return redirect('home')

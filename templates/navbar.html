@@ -6,6 +6,11 @@
     <input type="text" name="q" placeholder="Sök efter ett rum...">
 </form>
 
-<a href="{% url 'login' %}">Login</a>
+{% if request.user.is_authenticated %}
+    <p>Hej, {{ request.user }}!</p>
+    <a href="{% url 'logout' %}">Logga ut</a>
+{% else %}
+    <a href="{% url 'login' %}">Logga in</a>
+{% endif %}
 
 <hr>

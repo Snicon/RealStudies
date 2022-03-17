@@ -1,6 +1,8 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
+{% if page == 'login' %}
     <div>
         <form method="POST" action="">
             {% csrf_token %}
@@ -13,5 +15,23 @@
 
             <input type="submit" value="Logga in">
         </form>
+
+        <p>Inte skapat ett konto ännu? Klicka <a href="{% url 'register' %}">här</a>.</p>
     </div>
+
+{% else %}
+
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Skapa konto">
+        </form>
+
+        <p>Har du redan ett konto? Klicka <a href="{% url 'login' %}">här</a>.</p>
+    </div>
+{% endif %}
+
 {% endblock content %}
