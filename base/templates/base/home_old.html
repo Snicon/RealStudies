@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+    <div class="home-container">
+
+        <aside>
+            {% include 'base/topics_component.html' %}
+        </aside>
+
+        <div>
+            <h5> Det finns för närvarande {{ room_count }} rum att välja mellan.</h5>
+            <a href="{% url 'create-room' %}">Skapa ett rum</a>
+
+            {% include 'base/feed_component.html' %}
+
+        </div>
+
+        <div>
+            {% include 'base/activity_component.html' %}
+        </div>
+
+    </div>
+
+{% endblock %}
