@@ -1,0 +1,45 @@
+/* --- Layout Box --- */
+
+.layout__box
+  width: 90%
+  max-width: 48rem
+  min-height: 40rem
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -46%)
+  background-color: $dark
+  border-radius: 1rem
+  box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.1)
+  overflow: hidden
+
+.layout__boxHeader
+  display: flex
+  padding: 1.5rem
+  background-color: $dark-light
+
+.layout__boxTitle
+  display: flex
+  gap: 1.5rem
+  align-items: center
+
+.layout__boxTitle h3
+  text-transform: uppercase
+  font-weight: 500
+  color: $light
+
+.layout__boxTitle svg
+  width: 1.6rem
+  height: 1.6rem
+  fill: $primary
+
+.layout__body
+  margin: 3rem
+
+@media screen and (max-width: 900px)
+  .activities,
+  .topics
+    display: none
+
+  .layout--3 > .container > div:nth-child(2)
+    flex-basis: 100%

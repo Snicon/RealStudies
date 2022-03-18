@@ -1,0 +1,320 @@
+/* --- Room List --- */
+
+.roomList__header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 2.4rem
+
+.roomList__header h2
+  text-transform: uppercase
+  font-weight: 500
+  color: $light
+  letter-spacing: 1px
+
+.roomList__header p
+  font-weight: 500
+  color: $dark-light
+
+/* --- Room List Room --- */
+
+.roomListRoom
+  margin-bottom: 2.4rem
+  background-color: $dark
+  border-radius: 1rem
+  padding: 2rem
+
+.roomListRoom__header
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.roomListRoom__author
+  font-weight: 500
+  display: flex
+  align-items: center
+  gap: 1rem
+
+.roomListRoom__actions
+  display: flex
+  align-items: flex-start
+  gap: 1rem
+  position: relative
+
+.roomListRoom__actions span
+  font-size: 1.4rem
+  font-weight: 500
+
+.roomListRoom__actions svg
+  fill: $dark-medium !important
+  color: $gray
+
+  width: 2.0rem
+  height: 2.0rem
+
+.roomListRoom__content
+  margin: 1rem 0
+
+.roomListRoom__content a
+  font-size: 2rem
+  font-weight: 500
+  margin-bottom: 1.5rem
+  color: $light
+  transition: all 0.3s ease-in-out
+
+.roomListRoom__content a:hover
+  color: $primary
+
+.roomListRoom__meta
+  border-top: 1px solid $bg
+  padding-top: 1rem
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.roomListRoom__joined
+  color: $light-gray
+  display: flex
+  align-items: center
+  gap: 1rem
+  font-size: 1.4rem
+  font-weight: 500
+
+.roomListRoom__joined svg
+  fill: $primary
+  width: 1.6rem
+  height: 1.6rem
+
+.roomListRoom__topic
+  padding: 5px 1.5rem
+  background-color: $dark-medium
+  border-radius: 5rem
+  font-weight: 500
+  font-size: 1.3rem
+
+/* --- Room --- */
+
+.room,
+.participants
+  background: $dark
+  max-height: 87.5vh
+  border-radius: 0.7rem
+  overflow: hidden
+  position: relative
+
+@media screen and (max-width: 900px)
+  .participants
+    display: none
+
+  .layout--2 > .container > div:first-child
+    flex-basis: 100%
+
+.room__top,
+.participants__top
+  background: $dark-light
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 1rem 2rem
+  position: relative
+
+.room__top svg,
+.thread__top svg
+  width: 1.6rem
+  height: 1.6rem
+  fill: $light
+  cursor: pointer
+
+.room__topLeft
+  display: flex
+  align-items: flex-end
+  gap: 1rem
+
+.room__topLeft h3,
+.participants__top
+  text-transform: uppercase
+  font-weight: 500
+  color: $light
+
+.room__topLeft svg
+  width: 1.6rem
+  height: 1.6rem
+  fill: $light
+
+.room__topRight
+  display: flex
+  column-gap: 1em
+
+.room__topRight svg
+  fill: $primary-light
+
+.room__header
+  max-height: 30vh
+  overflow-y: auto
+  position: absolute
+  width: 95%
+  background: $dark
+  z-index: 999
+  top: 4.4rem
+  padding-top: 2rem
+  padding-bottom: 1rem
+
+@media screen and (max-width: 500px)
+  .room__header
+    top: 4.3rem
+    padding-right: 2rem
+
+.room__box
+  padding-left: 2rem
+  padding-right: 2rem
+  height: 80.5vh
+  /* overflow-y: auto */
+  padding-bottom: 0
+
+@media screen and (max-width: 500px)
+  .room__box
+    padding-left: 2.5rem
+    padding-right: 2rem
+    height: 80.5vh
+    overflow-y: auto
+    padding-bottom: 0
+
+.room__info
+  display: flex
+  justify-content: space-between
+
+.room__info h3
+  font-size: 2.4rem
+  font-weight: 500
+  color: $primary
+
+.room__hosted p
+  text-transform: uppercase
+  color: $gray
+  font-size: 1.2rem
+  font-weight: 700
+  line-height: 2
+
+.room__author
+  display: flex
+  gap: 1rem
+  align-items: center
+  margin-bottom: 1rem
+  transition: all 0.3s ease-in-out
+
+.room__author:hover
+  text-decoration: underline
+
+.room__topics
+  padding: 0.5rem 1.5rem
+  background: $dark-light
+  color: $light
+  display: inline-block
+  font-size: 1.4rem
+  border-radius: 1.5rem
+  margin: 1rem 0
+
+.room__conversation
+  margin-top: 1rem
+  margin-bottom: 4rem
+  height: 64%
+
+.threads h3
+  text-transform: uppercase
+  font-weight: 500
+  color: $gray
+
+.threads
+  background: $bg
+  border-radius: 0.7rem
+  overflow-y: auto
+  height: 100%
+  margin-top: 28vh
+  padding: 0 2rem 4rem 2rem
+
+.thread
+  border-left: 2px solid $dark
+  padding-left: 1rem
+  margin: 2rem 0
+  padding: 2rem
+
+.thread__top
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.thread__top svg
+  fill: $dark-light
+
+.thread__author
+  display: flex
+  align-items: center
+  gap: 1.5rem
+  font-size: 1.4rem
+
+.thread__authorInfo
+  display: flex
+  align-items: center
+  gap: 1rem
+
+.thread__details
+  font-size: 1.4rem
+  margin-top: 0.5rem
+
+.room__message
+  padding: 2rem
+  position: absolute
+  z-index: 111
+  bottom: 0
+  left: 0
+  right: 0
+  background: transparent
+
+.room__message > form > input
+  resize: none
+  background-color: $dark-light
+  color: $light
+  border: none
+  outline: none
+  border-radius: 0.7rem
+  height: 4.5rem
+  width: 100%
+  margin-top: -1rem
+  padding: 1.2rem
+  font-size: 1.4rem
+  font-weight: 500
+  position: relative
+
+.room__message > form > input::placeholder
+  color: $light-gray
+
+.participants__top span
+  color: $primary
+  font-size: 1.3rem
+  text-transform: none
+
+.participants__top
+  justify-content: flex-start
+  gap: 0.5rem
+
+.participants__list
+  padding: 2rem
+  height: 82.5vh
+  overflow-y: scroll
+  padding-bottom: 0
+
+.participant
+  display: flex
+  align-items: center
+  gap: 1.5rem
+  margin-bottom: 2rem
+
+.participant p
+  color: $light-gray
+  line-height: 1.2
+
+.participant span
+  display: block
+  font-weight: 500
+  color: $primary
+  font-weight: 1.4rem
